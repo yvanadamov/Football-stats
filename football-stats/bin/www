@@ -4,7 +4,7 @@
  * Module dependencies.
  */
 
-var app = require('../app');
+var app = require('../config/express');
 var debug = require('debug')('football-stats:server');
 var http = require('http');
 
