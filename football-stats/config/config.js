@@ -1,5 +1,5 @@
-moduel.exports = {
-    "shemas": {
+module.exports = {
+    "categories": {
         "0"  : {"schema":["1","X","2"]},
         "1"  : {"schema":["1X","12","X2"]},
         "2"  : {"schema":["1","2"],},
