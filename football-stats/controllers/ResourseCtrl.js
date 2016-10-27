@@ -1,23 +1,41 @@
 var request = require('request');
 
+var url = require('../config/config').url;
+
 module.exports = {
     getResourse: function(req, res, next) {
-        var url = 'http://www.oddsmath.com/football/matches/2016-10-22/';
+        // TODO: get data for range of dates
+        var websiteURL = url.website+getFormatedDate(new Date());
+
         var params = {};
-        var cb = function (error, response, body) {
-            if (!error && response.statusCode == 200) {
-                var reg = /data-x-id="\d*">/gm;
 
-                var json = body.match(reg);
-                
-
-                console.log(typeof body);
-                console.log(json);
-
-                res.render(json);
+        // TODO: regex for ids without map
+        var processRequest = function(error, response, body) {
+            if(error || response.statusCode != 200) {
+                res.render('error', { error: error });
             }
+
+            var idreg = /data-x-id="\d+">/gm;
+            var numReg = /[0-9]+/;
+
+            var ids = body.match(idreg)
+                            .map(function(el) {
+                                return el.match(numReg)[0];
+                            });
+
+            res.render('index', {title: JSON.stringify(ids)});
         };
 
-        request.get(url, params, cb);
+        request.get(websiteURL, params, processRequest);
     }
 };
+
+// input: Date object, output yyyy-mm-dd
+function getFormatedDate(date) {
+    var yyyy = date.getFullYear();
+    var mm = date.getMonth()+1;
+    var dd = date.getDate();
+
+    var formattedDate = yyyy+'-'+mm+'-'+dd;
+    return formattedDate;
+}

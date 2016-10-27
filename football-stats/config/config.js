@@ -1,4 +1,12 @@
 module.exports = {
+    "db": {
+        "connection": "mongodb://localhost/test",
+    },
+
+    "url": {
+        "website": "http://www.oddsmath.com/football/matches/"
+    },
+
     "categories": {
         "0"  : {"schema":["1","X","2"]},
         "1"  : {"schema":["1X","12","X2"]},

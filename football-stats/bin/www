@@ -5,6 +5,9 @@
  */
 
 var app = require('../config/express');
+
+var db = require('../config/mongoose');
+
 var debug = require('debug')('football-stats:server');
 var http = require('http');
 
