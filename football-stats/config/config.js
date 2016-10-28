@@ -1,10 +1,20 @@
 module.exports = {
     "db": {
+        // to do: fix
         "connection": "mongodb://localhost/test",
     },
 
+    "params": {
+        "language": "en",
+        "country_code": "BG",
+        "cat_id": 1,
+        "include_exchanges": 1,
+        "event_id": null
+    },
+
     "url": {
-        "website": "http://www.oddsmath.com/football/matches/"
+        "website": "http://www.oddsmath.com/football/matches/",
+        "match": "http://www.oddsmath.com/api/v1/live-odds.json/?"
     },
 
     "categories": {
