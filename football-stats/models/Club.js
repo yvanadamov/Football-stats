@@ -4,6 +4,7 @@ var Schema = mongoose.Schema;
 var clubSchema = new Schema({
     countryID: Number,
     countryName: String,
+    national: Boolean,
     clubs: [{ clubID: Number, clubName: String }]
 });
 

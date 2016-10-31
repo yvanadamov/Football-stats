@@ -4,16 +4,15 @@ var Schema = mongoose.Schema;
 var gameSchema = new Schema({
 	event: {
 		eventID:  Number,
+		time: Date,
 		countryID: Number,
 		homeID: Number,
 		awayID: Number,
-		// no fucking idea
-		isNational: Boolean
-	}
-	schemaID: Number,
-	result: {
+	},
+	results: [{
 		// not used
 		result: String,
+		categoryID: Number,
 		sign: String,
 		goals: Number,
 		comeback: Boolean
@@ -22,7 +21,7 @@ var gameSchema = new Schema({
 			coef: Number,
 			bets: Number
 		}],
-	}
+	}]
 });
 
 var gameModel = mongoose.model('Game', gameSchema);
