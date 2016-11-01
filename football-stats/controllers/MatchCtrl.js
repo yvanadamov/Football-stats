@@ -1,4 +1,5 @@
 var APICtrl = require('./APICtrl');
+var Match = require('../models/Match');
 
 var MatchCtrl = function() {};
 
@@ -31,6 +32,8 @@ MatchCtrl.prototype.insertMatch = function(req, res, next) {
 			isNational: response.event.awayteam.national
 		};
 
+		var teams = [home, away];
+
 		var categoryID = response.request.params.cat_id;
 
 		var result = {
@@ -47,8 +50,11 @@ MatchCtrl.prototype.insertMatch = function(req, res, next) {
 
 			var history = (trackExchanges) ? bookieData.history_exchange_back : bookieData.history;
 
-			var o = {};
-			o[bookieName] = getBookmakerData(history, response.schema, trackExchanges);
+			var o = {
+				name: bookieName,
+				trackExchanges: trackExchanges,
+				data: getBookmakerData(history, response.schema, trackExchanges)
+			};
 			return o;
 		});
 
@@ -60,6 +66,14 @@ MatchCtrl.prototype.insertMatch = function(req, res, next) {
 			result: result,
 			bookmakersData: bookmakersData
 		};
+
+		// Match.writeInFile();
+
+		// TODO : FIX
+		var isInDB = false;
+		if(!isInDB) {
+			Match.insertInDB(eventID, time, teams, result, function() {});
+		}
 
 		res.json(matchInfo);
 	});
@@ -89,22 +103,6 @@ function getBookmakerData(history, schema, amount) {
 	});
 
 	return coeficients;
-}
-
-function getGoalsFromString(result) {
-	var goals = result.split(':');
-	var goalsObj = {
-		home: parseInt(goals[0], 10),
-		away: parseInt(goals[1], 10)
-	};
-	return goalsObj;
-}
-
-function getSignFromGoalsObject(goals) {
-	if(goals.home == goals.away) {
-		return 'X';
-	}
-	return (goals.home > goals.away) ? 1 : 2
 }
 
 module.exports = new MatchCtrl();

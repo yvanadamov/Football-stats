@@ -19,5 +19,11 @@ module.exports = {
     "bookmakers": [
         {"name": "Betfair", "trackExchanges": true},
         {"name": "Bet365", "trackExchanges": false}
-    ]
+    ],
+
+    "textFileFormat": {
+        "fields": ",",
+        "lines": ";",
+        "format": "countryID,eventID,categoryID,bookmaker,sign,time,coef,amount;"
+    }
 };
