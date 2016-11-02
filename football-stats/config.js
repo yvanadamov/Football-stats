@@ -11,7 +11,7 @@ module.exports = {
     "params": {
         "language": "en",
         "country_code": "BG",
-        "cat_id": 1,
+        "cat_id": 0,
         "include_exchanges": 1,
         "event_id": null,
     },
@@ -21,9 +21,5 @@ module.exports = {
         {"name": "Bet365", "trackExchanges": false}
     ],
 
-    "textFileFormat": {
-        "fields": ",",
-        "lines": ";",
-        "format": "countryID,eventID,categoryID,bookmaker,sign,time,coef,amount;"
-    }
+    "categories": [10]
 };
