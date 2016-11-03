@@ -2,19 +2,15 @@
 
 v0.0.2
 
-Script:
+Scripts
+
+#insert
+-For inserting in football-stats database
+
+#TODO list:
 - stress test(Dido);
-- make it configurable(What can be configured more);
+- make it configurable(What can be configured more - Dido);
 - optimize where possible(Dido - regex in get ids function);
 - docs(Ivan in future);
 
-DB
--dump to csv(Ivan);
--description - E/R?, JSON shemas(Ivan in future);
--indexes and optimization(Ivan, Dido);
--replicas/sharding/move to local(Ivan, Dido);
--fill with data
-
-
-First analysis Ivan, Dido
-- collect all matches which has sumnitelna coefficients change(Ivan)
+-start script: in scripts/insert/ directory, run npm install and then npm start;
