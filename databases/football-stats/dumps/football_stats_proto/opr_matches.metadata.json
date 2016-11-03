@@ -1,0 +1,1 @@
+{"options":{},"indexes":[{"v":1,"key":{"_id":1},"name":"_id_","ns":"football_stats_proto.opr_matches"},{"v":1,"unique":true,"key":{"matchID":1},"name":"matchID_1","ns":"football_stats_proto.opr_matches","background":true,"sparse":true}]}
