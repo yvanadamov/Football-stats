@@ -25,12 +25,12 @@ DB.prototype.insertMatchInfo = function(matchID, date, teams, result, cb) {
 		countryName: countryName,
 		homeName: home.clubName,
 		awayName: away.clubName,
-		totalGoals: final.home+final.away,
-		isComeback: isComeback(first, second),
+		totalGoals: getTotalGoals(final),
+		isComeback: isComeback(first, final),
 		result: {
 			first: result.first,
-			second: result.second,
-			final: result.final
+			final: result.final,
+			second: result.second
 		}
 	};
 
@@ -44,6 +44,9 @@ DB.prototype.insertCoeffInfo = function(insertData, cb) {
 };
 
 function getGoalsFromString(result) {
+	if(!result) {
+		return null;
+	}
 	var goals = result.split('-');
 	var goalsObj = {
 		home: parseInt(goals[0], 10),
@@ -52,13 +55,24 @@ function getGoalsFromString(result) {
 	return goalsObj;
 }
 
-function isComeback(first, second) {
-	var homeComeback = (first.home < first.away && second.home > second.away);
+function getTotalGoals(final) {
+	if(!final) {
+		return null;
+	}
+	var totalGoals = final.home+final.away;
+	return totalGoals;
+}
+
+function isComeback(first, final) {
+	if(!first || !final) {
+		return null;
+	}
+	var homeComeback = (first.home < first.away && final.home > final.away);
 	if(homeComeback) {
 		return true;
 	}
 
-	var awayComeback = (first.home > first.away && second.home < second.away);
+	var awayComeback = (first.home > first.away && final.home < final.away);
 	if(awayComeback) {
 		return true;
 	}

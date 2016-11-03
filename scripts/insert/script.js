@@ -87,11 +87,17 @@ API.prototype.insertMatchInfo = function(matchID) {
 
 		var teams = [home, away];
 
-		var result = {
-			final: response.livescore.value,
-			first: response.livescore['1stHalf'],
-			second: response.livescore['2ndHalf']
-		};
+		var result;
+		if(response.hasOwnProperty('livescore')) {
+			result = {
+				final: response.livescore.value,
+				first: response.livescore['1stHalf'],
+				second: response.livescore['2ndHalf']
+			};
+		}
+		else {
+			result = {}
+		}
 
 		db.insertMatchInfo(matchID, time, teams, result, function(err, insertedMatch) {
 			if(err) {
@@ -180,12 +186,20 @@ API.prototype.insertCategoryInfo = function(teams, matchID, categoryID, response
 	}
 };
 
-API.prototype.insertMatchesInfo = function(ids) {
-	ids.forEach(function(matchID) {
-		this.insertMatchInfo(matchID);
-	}.bind(this));
-};
-
 // TO DO: insert for multiple days
 var api = new API();
-api.insertMatchesInfo([1608208]);
+api.getIDs('2016-11-03', function(err, ids) {
+	if(err) {
+		return console.error(ids);
+	}
+
+	console.log(ids.length);
+
+	// for(var i = 0; i < 20; i++) {
+	// 	api.insertMatchInfo(ids[i]);
+	// }
+
+	ids.forEach(function(matchID) {
+		api.insertMatchInfo(matchID);
+	});
+});
