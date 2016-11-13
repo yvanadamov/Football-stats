@@ -5,6 +5,7 @@ var Match = require('./Match');
 var BookieData = require('./BookieInfo');
 
 var DB = function() {
+	// TODO - close connection after job is done, for this purpose, make sure your job is done before closing the connection
 	this.connection = mongoose.connect(dbConfig.connection);
 };
 
@@ -35,6 +36,7 @@ DB.prototype.insertMatchInfo = function(matchID, date, teams, result, cb) {
 	};
 
 	var match = new Match(matchObject);
+	console.log(JSON.stringify(matchObject)+' is my object');
 	return match.save(matchObject, cb);
 };
 

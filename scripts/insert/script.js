@@ -4,7 +4,6 @@ var db = require('./models/DB');
 
 var config = require('./config');
 
-
 var API = function() {};
 
 API.prototype.getIDs = function(date, cb) {
@@ -188,18 +187,14 @@ API.prototype.insertCategoryInfo = function(teams, matchID, categoryID, response
 
 // TO DO: insert for multiple days
 var api = new API();
+
 api.getIDs('2016-11-03', function(err, ids) {
 	if(err) {
 		return console.error(ids);
 	}
-
-	console.log(ids.length);
-
-	// for(var i = 0; i < 20; i++) {
-	// 	api.insertMatchInfo(ids[i]);
-	// }
-
+	
 	ids.forEach(function(matchID) {
+		//console.log("My match is"+matchID);
 		api.insertMatchInfo(matchID);
 	});
 });
