@@ -2,7 +2,7 @@
   "name": "insert_script",
   "version": "1.0.0",
   "description": "",
-  "main": "script.js",
+  "main": "insertScript.js",
   "dependencies": {
     "mongoose": "^4.6.5",
     "request": "^2.77.0"
