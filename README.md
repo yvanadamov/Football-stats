@@ -47,6 +47,7 @@ The entire project is under the [MIT license](http://opensource.org/licenses/mit
 
 ##TODO list:
 
+```
 To disucss:
 1. `models` to be part of `db` folder; or perhaps to rename it?
 
@@ -74,3 +75,4 @@ Future job:
 1. Add more championships in `retrieve data` module
 2. Adding basic AI module
 3. Stress test
+```
