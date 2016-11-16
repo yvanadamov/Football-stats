@@ -13,7 +13,6 @@ The purpose of the project is to retrieve odd dropping data and to analyze it vi
 The project was inspired by the idea that we can:
 - find a correlation between odd dropping and final result of matches
 - increase personal skills in nodejs, mongo DB, big data at all...
-A short description of the motivation behind the creation and maintenance of the project. This should explain **why** the project exists.
 
 ## Installation
 
